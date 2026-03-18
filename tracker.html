@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tracker Quiz Patente</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<h2>Inserisci errori</h2>
+
+<input id="errori" type="number" placeholder="Numero errori">
+<button onclick="aggiungi()">Aggiungi</button>
+
+<h3>Statistiche</h3>
+<p id="totQuiz"></p>
+<p id="mediaErrori"></p>
+
+<canvas id="grafico"></canvas>
+
+<script>
+const DOMANDE = 30;
+let dati = JSON.parse(localStorage.getItem("quiz")) || [];
+
+function aggiungi() {
+  let errori = Number(document.getElementById("errori").value);
+  let giuste = DOMANDE - errori;
+
+  let oggi = new Date().toISOString().split("T")[0];
+
+  dati.push({
+    data: oggi,
+    errori: errori,
+    giuste: giuste
+  });
+
+  localStorage.setItem("quiz", JSON.stringify(dati));
+
+  aggiorna();
+}
+
+function aggiorna() {
+  document.getElementById("totQuiz").innerText =
+    "Quiz fatti: " + dati.length;
+
+  let media = dati.reduce((sum, d) => sum + d.errori, 0) / dati.length || 0;
+
+  document.getElementById("mediaErrori").innerText =
+    "Media errori: " + media.toFixed(2);
+
+  // grafico
+  const labels = dati.map(d => d.data);
+  const errori = dati.map(d => d.errori);
+
+  new Chart(document.getElementById("grafico"), {
+    type: "line",
+    data: {
+      labels: labels,
+      datasets: [{
+        label: "Errori",
+        data: errori
+      }]
+    }
+  });
+}
+
+aggiorna();
+</script>
+
+</body>
+</html>
