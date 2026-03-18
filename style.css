@@ -1,0 +1,68 @@
+/* Colore di sfondo piacevole e contrasto per iPhone */
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #f0f8ff; /* colore azzurro chiaro */
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* Titoli e testo */
+h2 {
+  margin-top: 0;
+  text-align: center;
+}
+
+p {
+  text-align: center;
+  font-size: 16px;
+}
+
+/* Textarea full width e responsive */
+textarea {
+  width: 100%;
+  max-width: 500px;
+  height: 150px;
+  font-family: monospace;
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  margin-top: 10px;
+  resize: none;
+}
+
+/* Pulsante carino e touch-friendly */
+button {
+  margin-top: 15px;
+  padding: 12px 20px;
+  font-size: 18px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Per iPhone: textarea e button a tutta larghezza possibile */
+@media (max-width: 500px) {
+  textarea {
+    font-size: 14px;
+    height: 120px;
+  }
+
+  button {
+    width: 100%;
+  }
+}

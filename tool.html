@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Generatore JSON Quiz Patente</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<h2>Generatore JSON Quiz Patente</h2>
+<p>Passa il numero di errori nell'URL tipo <code>?errori=3</code></p>
+
+<textarea id="output" rows="6" readonly></textarea><br>
+<button onclick="copia()">Copia JSON</button>
+
+<script>
+const DOMANDE = 30;
+
+// Prende il parametro errori dall'URL
+const params = new URLSearchParams(window.location.search);
+let errori = Number(params.get("errori")) || 0;
+
+// Calcola la data odierna
+let oggi = new Date().toISOString().split("T")[0];
+
+// Crea l’oggetto JSON
+let obj = {
+  data: oggi,
+  errori: errori,
+  giuste: DOMANDE - errori
+};
+
+// Mostra JSON nella textarea
+const output = document.getElementById("output");
+output.value = JSON.stringify(obj, null, 2);
+
+// Funzione per copiare negli appunti
+function copia() {
+  navigator.clipboard.writeText(output.value)
+   
+    .catch(err => alert("Errore: " + err));
+}
+</script>
+
+</body>
+</html>
