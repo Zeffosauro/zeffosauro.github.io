@@ -1,0 +1,70 @@
+/* Sfondo rosa stile patente italiana */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #ffccd5; /* rosa patente */
+  color: #333;
+  padding: 20px;
+}
+
+/* Titoli */
+h1, h2 {
+  text-align: center;
+  color: #b30059;
+  margin-bottom: 10px;
+}
+
+/* Paragrafo numero quiz */
+#totQuiz {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* Tabella elegante con bordi */
+table {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 30px auto;
+  border-collapse: collapse;
+  background: #fff0f5;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Celle con bordo e padding */
+th, td {
+  padding: 12px 15px;
+  text-align: center;
+  border: 1px solid #ff99c2;
+}
+
+/* Header della tabella */
+th {
+  background-color: #ff66b2;
+  color: white;
+  font-weight: bold;
+}
+
+/* Righe alternate leggermente colorate */
+tr:nth-child(even) {
+  background-color: rgba(255, 204, 221, 0.4);
+}
+
+/* Hover sulle righe */
+tr:hover {
+  background-color: rgba(255, 153, 178, 0.3);
+}
+
+/* Canvas grafici */
+canvas {
+  display: block;
+  max-width: 600px;
+  margin: 20px auto;
+  background: #ffe6f0;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}

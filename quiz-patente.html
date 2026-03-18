@@ -1,31 +1,100 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Quiz Patente</title>
+<meta charset="UTF-8">
+<title>Dashboard Quiz Patente</title>
+<link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <h1>Quiz patente</h1>
-    <h2>titolo 2</h2>
-    <form id="deck-form">
-        <input type="text" id="deck-name" placeholder="Nome del mazzo" required>
-        <input type="text" id="deck-tags" placeholder="Tag separati da virgola">
-        <button type="submit">Aggiungi Mazzo</button>
-    </form>
-    <ul id="deck-list"></ul>
 
-    <script src="script.js"></script> 
-    <script type="text/javascript" src="quiz.json">
-       
+<h1>Dashboard Quiz Patente</h1>
+<p id="totQuiz"></p>
 
- var data = JSON.parse(quiz);
- alert(data[0].data);
- alert(data[0].giuste);
- alert(data[1].data);
- alert(data[1].giuste);
+<h2>Dati dei quiz</h2>
+<table id="tabella">
+  <thead>
+    <tr>
+      <th>Data</th>
+      <th>Giuste</th>
+      <th>Errore</th>
+      <th>% Riuscita</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
 
-    </script>
+<h2>Grafici</h2>
+<canvas id="graficoErrori"></canvas>
+<canvas id="graficoPercentuale" style="margin-top:30px;"></canvas>
+
+<script>
+const DOMANDE = 30;
+
+// Carica il file dati.json
+fetch("quiz.json")
+  .then(res => res.json())
+  .then(data => {
+    // Numero di quiz
+    document.getElementById("totQuiz").innerText = `Quiz fatti: ${data.length}`;
+
+    // Riempie la tabella
+    const tbody = document.querySelector("#tabella tbody");
+    data.forEach(d => {
+      const tr = document.createElement("tr");
+      const perc = ((d.giuste / DOMANDE) * 100).toFixed(1);
+      tr.innerHTML = `
+        <td>${d.data}</td>
+        <td>${d.giuste}</td>
+        <td>${d.errori}</td>
+        <td>${perc}%</td>
+      `;
+      tbody.appendChild(tr);
+    });
+
+    // Grafico Errori
+    new Chart(document.getElementById("graficoErrori"), {
+      type: "line",
+      data: {
+        labels: data.map(d => d.data),
+        datasets: [{
+          label: "Errori",
+          data: data.map(d => d.errori),
+          borderColor: "#ff4d4d",
+          backgroundColor: "rgba(255, 77, 77, 0.2)",
+          fill: true,
+          tension: 0.3
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { position: 'top' } },
+        scales: { y: { beginAtZero: true, max: DOMANDE } }
+      }
+    });
+
+    // Grafico % riuscita
+    new Chart(document.getElementById("graficoPercentuale"), {
+      type: "line",
+      data: {
+        labels: data.map(d => d.data),
+        datasets: [{
+          label: "% Riuscita",
+          data: data.map(d => ((d.giuste/DOMANDE)*100).toFixed(1)),
+          borderColor: "#ff66b2",
+          backgroundColor: "rgba(255,102,178,0.2)",
+          fill: true,
+          tension: 0.3
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { position: 'top' } },
+        scales: { y: { beginAtZero: true, max: 100 } }
+      }
+    });
+  });
+</script>
 </body>
 </html>
