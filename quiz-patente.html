@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Gestore di Flashcard</title>
+    <title>Quiz Patente</title>
 </head>
 <body>
     <h1>Quiz patente</h1>
@@ -16,6 +16,16 @@
     </form>
     <ul id="deck-list"></ul>
 
-    <script src="script.js"></script>
+    <script src="script.js"></script> 
+    <script type="text/javascript" src="quiz.json">
+       
+
+ var data = JSON.parse(quiz);
+ alert(data[0].data);
+ alert(data[0].giuste);
+ alert(data[1].data);
+ alert(data[1].giuste);
+
+    </script>
 </body>
 </html>
