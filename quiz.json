@@ -13,5 +13,20 @@
   "data": "2026-03-18",
   "errori": 7,
   "giuste": 23
+},
+{
+  "data": "2026-03-19",
+  "errori": 5,
+  "giuste": 25
+},
+{
+  "data": "2026-03-19",
+  "errori": 4,
+  "giuste": 26
+},
+{
+  "data": "2026-03-19",
+  "errori": 6,
+  "giuste": 24
 }
 ]
