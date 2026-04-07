@@ -123,5 +123,20 @@
   "data": "2026-04-04",
   "errori": 4,
   "giuste": 26
+},
+  {
+  "data": "2026-04-07",
+  "errori": 3,
+  "giuste": 27
+},
+  {
+  "data": "2026-04-07",
+  "errori": 4,
+  "giuste": 26
+},
+  {
+  "data": "2026-04-07",
+  "errori": 6,
+  "giuste": 24
 }
 ]
